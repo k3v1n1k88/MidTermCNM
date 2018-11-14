@@ -1,0 +1,17 @@
+.container{
+    width: 1300px;
+    height: 100%;
+}
+.navbar-inverse > .container-fluid > .navbar-collapse > .navTitle{
+    color: brown;
+    margin-left: 500px;
+
+}
+.row > .col-xs-2 > .form-control{
+   margin-left: 1080px;
+   margin-top: 10px;
+}
+.search{
+    margin-left: 1080px;
+    margin-bottom: 10px;
+}
