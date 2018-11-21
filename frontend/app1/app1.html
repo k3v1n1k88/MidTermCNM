@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+<head>
+    <title>Request</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/main.css">                                                               
+</head>
+<body>
+   <section class="banner-area relative" id="home">
+        <div class="overlay overlay-bg"></div>
+        <div class="container">
+            <div class="row fullscreen d-flex align-items-center justify-content-between">
+                <div class="col-lg-4  col-md-6 header-right">
+                    <h4 class="pb-30">Customer Information</h4>
+                    <form class="form">
+                        <div class="from-group">
+                            <input class="form-control txt-field" type="text" name="name" placeholder="Your name"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your name'">
+                            <input class="form-control txt-field" type="tel" name="phone" placeholder="Phone number"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone number'">
+                            <input class="form-control txt-field" type="address" name="address" placeholder="Address" onfocus="this.placeholder = ''"
+                                onblur="this.placeholder = 'Enter address'">
+                            <input class="form-control txt-field" type="tel" name="note" placeholder="Note"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Note'">
+                        </div>
+                        <div class="form-group">
+
+                            <button class="btn btn-default btn-lg btn-block text-center text-uppercase" id="btnSearch">Search</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>  
+</body>
+<script>
+$('#btnSearch').click(function () {
+$.ajax({
+    url: 'http://localhost:27017/requests?Name=' + $('#name').val()
+        + '&Phone=' + $('#phone').val() + '&Address=' + $('#address').val() + '&Note=' + $('#note').val(),
+    type: 'POST',
+    dataType: 'json',
+    timeout: 10000
+}).done(function() {
+});
+});
+</script>
+</html>
