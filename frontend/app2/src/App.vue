@@ -1,18 +1,50 @@
 <template>
   <div>
-    <c_ListRequest />
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-3">
+          <c_ListRequest @categorySelected="categorySelectedHandler" />
+        </div>
+        <div class="col-sm-9 col-md-9">
+          <!-- <c_Products :category="selectedCategoryName" :list="productList" /> -->
+        </div>
+      </div>
+    </div>
 
     
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 import c_ListRequest from './components/c_ListRequest.vue'
 
 export default {
   name: 'App',
   components: {
     c_ListRequest
+  },
+  data () {
+    return {
+      selectedCategoryName: '',
+      productList: []
+    }
+  },
+   methods: {
+    categorySelectedHandler(args) {
+      // alert(JSON.stringify(args));
+
+      var self = this;
+      self.selectedCategoryName = args.CatName;
+
+      axios.get(`http://localhost:3000/categories/${args.CatID}/products`)
+        .then(res => {
+          self.productList = res.data.products;
+        }).catch(err => {
+          console.log(err);
+        })
+    }
   }
 }
 
