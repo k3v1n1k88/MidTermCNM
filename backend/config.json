@@ -1,0 +1,11 @@
+{
+	"server":{
+		"port":3001
+	},
+	"database":{
+		"type": "mongeDB",
+		"name": "requests",
+		"port":	27017,
+		"host": "localhost"
+	}
+}
