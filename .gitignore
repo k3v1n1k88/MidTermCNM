@@ -1,0 +1,3 @@
+backend/MongoDBData
+*.log
+backend/node_modules
