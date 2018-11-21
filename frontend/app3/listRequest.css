@@ -1,0 +1,9 @@
+.navbar-inverse > .container-fluid > .navbar-collapse > .navTitle{
+    color: brown;
+    margin-left: 450px;
+}
+.panel-success {
+    border-color: #35aa47;
+    margin-top: 30px;
+    
+}

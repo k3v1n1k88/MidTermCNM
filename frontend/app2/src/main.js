@@ -15,6 +15,7 @@ import { Card } from 'bootstrap-vue/es/components';
 Vue.use(Card);
 import { Scrollspy } from 'bootstrap-vue/es/directives';
 Vue.use(Scrollspy);
+
 Vue.config.productionTip = false
 
 new Vue({
