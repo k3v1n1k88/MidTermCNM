@@ -7,7 +7,7 @@
           <c_ListRequest @categorySelected="categorySelectedHandler" />
         </div>
         <div class="col-sm-9 col-md-9">
-          <!-- <c_Products :category="selectedCategoryName" :list="productList" /> -->
+          <c_Map />
         </div>
       </div>
     </div>
@@ -19,11 +19,11 @@
 <script>
 import axios from 'axios'
 import c_ListRequest from './components/c_ListRequest.vue'
-
+import c_Map from './components/c_Map.vue'
 export default {
   name: 'App',
   components: {
-    c_ListRequest
+    c_ListRequest, c_Map
   },
   data () {
     return {

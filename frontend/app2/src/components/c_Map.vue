@@ -1,12 +1,18 @@
 <template>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">List request</h3>
-    </div>
-    <div class="list-group">
-      <a v-for="c in list" :key="c.CatID" href="javascript:;" class="list-group-item" :class="{active: selected === c.CatID}" @click="categoryClicked(c.CatID, c.CatName)">{{c.CatName}}</a>
-    </div>
-  </div>
+  <GmapMap
+  :center="{lat:10, lng:10}"
+  :zoom="7"
+  map-type-id="terrain"
+  style="width: 500px; height: 300px">
+  <GmapMarker
+    :key="index"
+    v-for="(m, index) in markers"
+    :position="m.position"
+    :clickable="true"
+    :draggable="true"
+    @click="center=m.position"
+  />
+</GmapMap>
 </template>
 
 <script>
@@ -14,27 +20,14 @@
 import axios from 'axios'
 
 export default {
-  name : 'c_ListRequest',
-  data () {
-      return {
-        list: [
-          { CatID: 1, CatName: 'Laptop'},
-          { CatID: 2, CatName: 'Tablet'},
-        ],
-        selected: -1
-      }
-    },
-    methods: {
-    categoryClicked(id, name) {
-      var self = this;
-      self.selected = id;
-
-      var args = {
-        CatID: id,
-        CatName: name
-      }
-      self.$emit('categorySelected', args);
-    }
+  mounted () {
+    // At this point, the child GmapMap has been mounted, but
+    // its map has not been initialized.
+    // Therefore we need to write mapRef.$mapPromise.then(() => ...)
+ 
+    this.$refs.mapRef.$mapPromise.then((map) => {
+      map.panTo({lat: 1.38, lng: 103.80})
+    })
   }
 }
 
