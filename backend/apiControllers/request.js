@@ -31,7 +31,13 @@ router.get('/', function(req, res, next) {
 
   console.log(`name = ${name} phone = ${phone} address = ${address} note = ${note}`);
     res.json({
-  	msg: 'success'
+  	msg: 'success',
+    info:{
+      name: name,
+      phone: phone,
+      address: address,
+      note: note
+    }
   });
 });
 
