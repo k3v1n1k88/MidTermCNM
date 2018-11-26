@@ -59,7 +59,22 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
+        <h4 class="modal-title">Thông tin tài xế</h4>
+        <table style="width:100%">
+            <tr>
+                <th>Name</th>
+                <th>Telephone Number</th> 
+                <th>Address</th>
+               
+                
+            </tr>
+            <tr>
+                <td>Hoàng Tú</td>
+                <td>0981463592</td> 
+                <td>12 Quốc Hương,phường Thảo Điền,Quận 2</td>
+                
+            </tr>  
+        </table>
       </div>
       <div class="modal-body">
         <div id="map"></div>
@@ -73,35 +88,28 @@
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0ynsTMNrW9Y3ZrzsxCDxiAZPdzHNYQbE&callback=initMap">
 	</script>
 <script>
-		// Initialize and add the map
+		
 		function initMap() {
-			// The location of KHTN
-			//var khtn = {lat: 10.762999, lng: 106.681178}; //Kinh độ - Vĩ độ trường KHTN q5 hcm
 			var khtn = new google.maps.LatLng(10.762999, 106.681178);
-			// var nhaTrang = new google.maps.LatLng(12.238791, 109.196747);
 			var landMark = new google.maps.LatLng(10.776530, 106.700980);
-			//var hCm = new google.maps.LatLng(10.776530, 106.700980);
-			// The map, centered at KHTN
 			var map = new google.maps.Map(
 				document.getElementById('map'), { zoom: 15, center: khtn });
-			// The marker, positioned at KHTN
 			var marker = new google.maps.Marker({ position: khtn, map: map });
 			//-----------------------------------------
-			var directionsService = new google.maps.DirectionsService();    // Khởi tạo DirectionsService - thằng này có nhiệm vụ tính toán chỉ đường cho chúng ta.
-			var directionsDisplay = new google.maps.DirectionsRenderer({ map: map });    // Khởi tạo DirectionsRenderer - thằng này có nhiệm vụ hiển thị chỉ đường trên bản đồ sau khi đã tính toán.
-			//khtn = new google.maps.LatLng(10.776530, 106.700980);
+			var directionsService = new google.maps.DirectionsService();   
+			var directionsDisplay = new google.maps.DirectionsRenderer({ map: map });   
 
-			calculateAndDisplayRoute(directionsService, directionsDisplay);    // Hàm xử lý và hiển thị kết quả chỉ đường
+			calculateAndDisplayRoute(directionsService, directionsDisplay);   
 
 			function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-				directionsService.route({    // hàm route của DirectionsService sẽ thực hiện tính toán với các tham số truyền vào
-					origin: khtn,    // điểm xuất phát
-					destination: landMark,    // điểm đích
-					travelMode: 'DRIVING',     // phương tiện di chuyển
-				}, function (response, status) {    // response trả về bao gồm tất cả các thông tin về chỉ đường
+				directionsService.route({   
+					origin: khtn,    
+					destination: landMark,   
+					travelMode: 'DRIVING',   
+				}, function (response, status) {    
 					if (status === google.maps.DirectionsStatus.OK) {
-						directionsDisplay.setDirections(response); // hiển thị chỉ đường trên bản đồ (nét màu đỏ từ A-B)
-						showSteps(response); // Hiển thị chi tiết các bước cần phải đi đến đích.
+						directionsDisplay.setDirections(response); 
+						showSteps(response); 
 					} else {
 						window.alert('Request for getting direction is failed due to ' + status);    // Hiển thị lỗi
 					}
