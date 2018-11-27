@@ -5,7 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var aboutAPI = require('./apiControllers/about');
-var requesAPI = require('./apiControllers/request');
+var requestAPI = require('./apiControllers/request');
+var signinAPI = require('./apiControllers/signin')
 
 var app = express();
 
@@ -20,7 +21,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/about', aboutAPI);
-app.use('/request', requesAPI);
+app.use('/request', requestAPI);
+app.use('/signin', signinAPI);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
