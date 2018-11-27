@@ -6,7 +6,7 @@ var logger = require('morgan');
 
 var aboutAPI = require('./apiControllers/about');
 var requestAPI = require('./apiControllers/request');
-var signinAPI = require('./apiControllers/signin')
+// var signinAPI = require('./apiControllers/signin')
 
 var app = express();
 
@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/about', aboutAPI);
 app.use('/request', requestAPI);
-app.use('/signin', signinAPI);
+// app.use('/signin', signinAPI);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
