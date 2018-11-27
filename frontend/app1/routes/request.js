@@ -5,18 +5,15 @@ var request = require('request-promise');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-
-	res.render('app',{
-		title:'Request'
-	});
+	res.render('app');
 });
 
-router.get('/request', function(req, res, next) {
+router.post('/', function(req, res, next) {
 
-	var name = req.query.name;
-	var phone = req.query.phone;
-	var address = req.query.address;
-	var note = req.query.note;
+	var name = req.body.name;
+	var phone = req.body.phone;
+	var address = req.body.address;
+	var note = req.body.note;
 
 	console.log(`name = ${name} phone = ${phone} address = ${address} note = ${note}`)
 
@@ -27,7 +24,7 @@ router.get('/request', function(req, res, next) {
 
 	// Configure the request
 	var options = {
-		url: 'http://localhost:3001/request',
+		url: 'http://localhost:3000/request',
 		method: 'GET',
 		headers: headers,
 		qs: {
