@@ -1,0 +1,40 @@
+<form id="signup-form" action="/register" method="post" class="col-md-6 col-md-offset-1">
+        <div class="container-fluid">
+            <div class="text-center">
+                <h3>Register</h3>
+            </div>
+             <div class="row" style="margin-top: 20px;margin-bottom: 20px;">
+                <h6 style="margin-bottom: 5px;">Họ tên:</h6>
+                <input type="text" name="displayname" id="inputName" class="form-control" value="" title="" placeholder="Nhập họ tên">
+            </div>
+            <div class="row" style="margin-top: 20px;margin-bottom: 20px;">
+                <h6 style="margin-bottom: 5px;">Tên đăng nhập:</h6>
+                <input type="text" name="username" id="username" class="form-control" value="" required="required" title="" placeholder="Tên đăng nhập*">
+            </div>
+            <div class="row" style="margin-top: 20px;margin-bottom: 20px;">
+                <h6 style="margin-bottom: 5px;">Mật khẩu:</h6>
+                <input type="password" name="password" id="password" class="form-control" onkeyup ='check();' required="required" title="" placeholder="Nhập mật khẩu của bạn*">
+            </div>
+            {{!-- <div class="row" style="margin-top: 20px;margin-bottom: 20px;">
+                <h6 style="margin-bottom: 5px;">Xác nhận mật khẩu*:</h6>
+                <input type="password" name="retype_password" onkeyup ='check();' id="retype_password" class="form-control" required="required" title="" placeholder="Xác nhận lại mật khẩu*">
+            </div> --}}
+            <div class="row" style="float: right; margin-top: 20px;margin-bottom: 20px;">
+                <button type="submit" class="btn btn-success right" >Đăng kí</button>
+            </div>
+
+        </div>
+</form>
+{{!-- <script>
+    var check = function() {
+        if (document.getElementById('password').value ==
+            document.getElementById('retype_password').value) {
+            document.getElementById('message').style.color = 'green';
+            document.getElementById('message').innerHTML = 'matching';
+        } else {
+            document.getElementById('message').style.color = 'red';
+            document.getElementById('message').innerHTML = 'not matching';
+        }
+    }
+
+</script> --}}

@@ -5,9 +5,16 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
 
   res.render('app',{
-  	title:'Request'
+    address: '230 Điện biên phủ',
+    addressReceived: '12 Quốc Hương Quận 2'
   });
 });
+// router.get('/', function(req, res, next) {
+
+//   res.render('app',{
+//     addressReceived: '12 Quốc Hương'
+//   });
+// });
 
 router.get('/abc', function(req, res, next) {
   res.render('app1');

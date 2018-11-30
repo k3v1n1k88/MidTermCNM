@@ -6,8 +6,8 @@
         <div class="collapse navbar-collapse" id="headerNavber">                    
             <h2 class ="navTitle" href="#">REQUEST MANAGEMENT</h2>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a id="signup" href="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             </ul>
         </div>
     </div>
@@ -26,8 +26,10 @@
                     <tr>
                         <td>Thanh Vân</td>
                         <td>0981463592</td> 
-                        <td>12 Quốc Hương,phường Thảo Điền,Quận 2</td>
-                        <td><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Đã có xe nhận</button></td>
+                        <td data-address="{{addressReceived}}">
+                            <div id="456">
+                        </td>
+                        <td><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" data-address="{{address}}">Đã có xe nhận</button></td>
                         <td>14h:55</td>
                     </tr>  
                     <tr>
@@ -65,13 +67,15 @@
                 <th>Name</th>
                 <th>Telephone Number</th> 
                 <th>Address</th>
-               
-                
             </tr>
             <tr>
                 <td>Hoàng Tú</td>
                 <td>0981463592</td> 
-                <td>12 Quốc Hương,phường Thảo Điền,Quận 2</td>
+                <td>
+                    <div id="123">
+
+                    </div>
+                </td>
                 
             </tr>  
         </table>
@@ -88,13 +92,20 @@
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0ynsTMNrW9Y3ZrzsxCDxiAZPdzHNYQbE&callback=initMap">
 	</script>
 <script>
-		
+		var map;
+        var geocoder;
+
 		function initMap() {
-			var khtn = new google.maps.LatLng(10.762999, 106.681178);
-			var landMark = new google.maps.LatLng(10.776530, 106.700980);
-			var map = new google.maps.Map(
-				document.getElementById('map'), { zoom: 15, center: khtn });
-			var marker = new google.maps.Marker({ position: khtn, map: map });
+			//var khtn = new google.maps.LatLng(10.762999, 106.681178);
+			//var landMark = new google.maps.LatLng(10.776530, 106.700980);
+            var latlng = new google.maps.LatLng(-34.397, 150.644);
+            var mapOptions = {
+                zoom: 18,
+                center: latlng
+            }
+			map = new google.maps.Map(document.getElementById('map'), mapOptions);
+			//var marker = new google.maps.Marker({ position: khtn, map: map });
+            geocoder = new google.maps.Geocoder();
 			//-----------------------------------------
 			var directionsService = new google.maps.DirectionsService();   
 			var directionsDisplay = new google.maps.DirectionsRenderer({ map: map });   
@@ -103,8 +114,8 @@
 
 			function calculateAndDisplayRoute(directionsService, directionsDisplay) {
 				directionsService.route({   
-					origin: khtn,    
-					destination: landMark,   
+					origin: addressReceived,    
+					destination: address,   
 					travelMode: 'DRIVING',   
 				}, function (response, status) {    
 					if (status === google.maps.DirectionsStatus.OK) {
@@ -134,7 +145,41 @@
 
 
 		}
+        $('[data-toggle="modal"]').on('click', function(e){
+            var $target = $(e.target);
+            // modal targeted by the button
+            var address = $target.data('address');
+            var id = document.getElementById("123");
+            id.innerHTML = address;
 
+            geocoder.geocode( { 'address': address}, function(results, status) {
+            if (status == 'OK') {
+                map.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location
+                });
+            } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+            }
+            });
+            // get address received
+            var addressReceived = $target.data('addressReceived');
+            var id = document.getElementById("456");
+            id.innerHTML = addressReceived;
+
+            geocoder.geocode( { 'addressReceived': addressReceived}, function(results, status) {
+            if (status == 'OK') {
+                map.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location
+                });
+            } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+            }
+            });
+        });
 
 	</script>
     

@@ -1,0 +1,37 @@
+.login .center{
+    display: table;
+    width: 100%;
+    margin-right: auto;
+	margin-left: auto;
+	
+}
+
+.login .row{
+	margin: 10px;
+}
+
+.login .modal-content{
+	border-height: 20px;
+	border-radius: 20px;
+}
+
+.login #buy-group-button > button{
+	margin: 0px 10px 0px 10px;
+}
+.login #slidebar .img-thumbnail:hover {
+	border-width: 1px;
+	border-color: #000000;
+	border-style: solid;
+	filter: brightness(70%);
+}
+.login #slidebar .active{
+	border-width: 1px;
+	border-color: #000000;
+	border-style: solid;
+	filter: brightness(70%);
+}
+.panel-success {
+	border-color: #35aa47;
+	margin-left: 150px;
+	text-align: center;
+}
