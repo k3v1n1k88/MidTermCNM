@@ -40,12 +40,15 @@ router.post('/', function(req, res, next) {
     		body = JSON.parse(body);
     		// console.log(body)
     		// console.log(body.info);
-        	res.render('success',{
-        		name: body.info.name,
-        		phone: body.info.phone,
-        		address: body.info.address,
-        		note: body.info.note
-        	})
+        	// res.render('success',{
+        	// 	name: body.info.name,
+        	// 	phone: body.info.phone,
+        	// 	address: body.info.address,
+        	// 	note: body.info.note
+			// })
+			res.render('success_order',{
+    
+			});
     	})
     	.catch(function (err) {
         	console.log(err);

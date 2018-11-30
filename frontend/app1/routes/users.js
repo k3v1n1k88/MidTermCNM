@@ -17,6 +17,29 @@ router.post('/register',function(req, res, next){
   var password = req.body.password;
   console.log(displayname + username + password)
 
+  var user = new User({
+    displayname : displayname,
+    username : username,
+    password : password
+  });
+  User.findOne({ username: user.username }, function(err, user) {
+    if (err) throw err;
+
+    if (user.length){
+      cb('Name exists already',null);
+  }else{
+    user.save(function(err,request){
+      if (err) {return next(err)};
+      // res.status(200).send(request).toString();
+    });
+  
+    res.render('success',{
+      name : displayname
+    });
+  }
+    
+
+});
 
   var user = new User({
     displayname: displayname,
@@ -25,13 +48,7 @@ router.post('/register',function(req, res, next){
     
   });
 
-  user.save(function(err,request){
-    if (err) {return next(err)};
-    // res.status(200).send(request).toString();
-  });
-
-  res.render('success',{
-    name : displayname
-  });
+  
+ 
 });
 module.exports = router;
