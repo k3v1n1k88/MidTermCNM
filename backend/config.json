@@ -4,7 +4,7 @@
 	},
 	"database":{
 		"type": "mongeDB",
-		"name": "requests",
+		"name": "BikeOrder",
 		"port":	27017,
 		"host": "localhost"
 	}
